@@ -55,7 +55,7 @@ class HumiditySensor(AbstractSensor):
         super().__init__(getter)
 
     async def get_payload(self) -> int:
-        return int(self.data_getter()['humidity']) % 10
+        return int(self.data_getter()['humidity']) // 10
 
 
 class ConditionSensor(AbstractSensor):
@@ -91,7 +91,7 @@ class SeasonSensor(AbstractSensor):
 
 def weather_getter() -> Dict[str, Any]:
     data = {
-        'temp': randint(-20, 20),
+        'temp': randint(-50, 50),
         'humidity': randint(0, 100),
         'condition': choice(
             ['clear', 'partly-cloudy', 'cloudy', 'overcast', 'drizzle', 'light-rain', 'rain', 'moderate-rain',

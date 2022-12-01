@@ -5,11 +5,6 @@ import socket
 from pydantic import BaseSettings
 from loguru import logger
 
-from datetime import datetime
-
-
-# current_time: datetime = datetime.now()
-
 current_data = []
 
 logger.configure(
