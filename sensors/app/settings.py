@@ -13,7 +13,7 @@ logger.configure(
                 "sink": sys.stdout,
                 "serialize": False,
                 "colorize": True,
-                "format": "{file}:{line} [<level>{level}</level>] {time:YYYY-MM-DDTHH:mm:ssZ} {message}",
+                "format": "{file}:{line} [<level>{level}</level>] {time:%Y%m%dT%H%M%S} {message}",
                 "level": os.getenv("LOGGING_LEVEL", "INFO").upper(),
             },
         ]
