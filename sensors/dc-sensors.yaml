@@ -1,12 +1,70 @@
 version: "3.8"
 
 services:
-  random_sensor:
+  common:
+    build: .
+    ports:
+      - 8081:8081
+    command:
+      - common
+    restart: always
+
+  random:
     build: .
     ports:
       - 8080:8080
     command:
-      - -r
+      - random
+    restart: always
+
+  temperature:
+    build: .
+    ports:
+      - 8082:8082
+    command:
+      - temperature
+    restart: always
+
+  humidity:
+    build: .
+    ports:
+      - 8083:8083
+    command:
+      - humidity
+    restart: always
+
+  time:
+    build: .
+    ports:
+      - 8084:8084
+    command:
+      - time
+    restart: always
+
+  condition:
+    build: .
+    ports:
+      - 8085:8085
+    command:
+      - condition
+    restart: always
+
+
+  population:
+    build: .
+    ports:
+      - 8086:8086
+    command:
+      - population
+    restart: always
+
+
+  season:
+    build: .
+    ports:
+      - 8087:8087
+    command:
+      - season
     restart: always
 
 networks:

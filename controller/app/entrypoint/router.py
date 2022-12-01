@@ -14,14 +14,10 @@ async def post_data(data: dict):
     global current_time, current_data
 
     current_data.append(data)
-    logger.info((datetime.now() - current_time).seconds)
 
     if (datetime.now() - current_time).seconds >= 5:
-        logger.info(f'decision')
-
-        current_time = datetime.now()
-
         decision(current_data)
 
+        current_time = datetime.now()
         current_data.clear()
 

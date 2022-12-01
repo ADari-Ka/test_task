@@ -1,9 +1,9 @@
 import sys
 
-from asyncio import sleep, get_event_loop, wait
+from asyncio import get_event_loop
 
-from settings import logger
-from model.sensor import AbstractSensor, RandomSensor
+from settings import settings
+from model.sensor import SensorFactory
 
 from service import data_generation_task
 
@@ -13,11 +13,7 @@ if __name__ == '__main__':
 
     loop = get_event_loop()
 
-    if arg == '-r':
-        logger.info('Starting random sensor')
-        sensor = RandomSensor()
-    else:
-        sensor = AbstractSensor()
+    sensor = SensorFactory.get_sensor(arg, settings)
 
     loop.run_until_complete(data_generation_task(sensor))
 

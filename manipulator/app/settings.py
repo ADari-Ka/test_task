@@ -12,7 +12,7 @@ logger.configure(
                 "sink": sys.stdout,
                 "serialize": False,
                 "colorize": True,
-                "format": "[<level>{level}</level>] {message}",
+                "format": "{message}",
                 "level": os.getenv("LOGGING_LEVEL", "INFO").upper(),
             },
         ]
@@ -21,8 +21,8 @@ logger.configure(
 
 
 class Settings(BaseSettings):
-    CONTROLLER_HOST: str
-    CONTROLLER_PORT: int
+    HOST: str
+    PORT: int
 
 
 settings = Settings()

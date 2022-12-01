@@ -7,8 +7,7 @@ EXPOSE 5000
 
 ENV PYTHONPATH=/app:/app/entrypoint:$PYTHONPATH
 
-ENV CONTROLLER_HOST='controller'
-ENV CONTROLLER_PORT=8000
-
+ENV HOST='0.0.0.0'
+ENV PORT=5000
 
 ENTRYPOINT ["python", "app/main.py"]

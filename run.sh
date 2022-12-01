@@ -11,7 +11,6 @@ cd ..
 docker-compose -f sensors/dc-sensors.yaml build
 docker-compose -f sensors/dc-sensors.yaml up
 
-docker logs controller
 docker logs manipulator
 
 docker stop controller manipulator
