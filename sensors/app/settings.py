@@ -22,7 +22,7 @@ logger.configure(
 
 
 class Settings(pydantic.BaseSettings):
-    CONTROLLER_URL: str = "http://localhost:5000"
+    CONTROLLER_URI: str = "http://localhost:5000"
 
     class Config:
         env_file = ".env"

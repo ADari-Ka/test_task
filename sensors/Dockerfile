@@ -6,4 +6,4 @@ COPY ./ ./
 EXPOSE 8080
 ENTRYPOINT ["python", "app/main.py"]
 
-ENV CONTRILLER_URL=http://localhost:8080
+ENV CONTROLLER_URI=http://controller:8000
