@@ -1,10 +1,12 @@
 import socket
+import json
 from datetime import datetime
 from fastapi import Depends
 
-from entrypoint.setup import get_socket
+from settings import manipulator_socket
 
 
-def decision(data, m_socket=Depends(get_socket)):
+def decision(data, m_socket=manipulator_socket):
     dec = {'datetime': datetime.now().strftime('%Y%m%dT%H%M%S'), 'status': 'on'}
-    m_socket.sendall(bytes(data, 'utf-8'))
+
+    m_socket.sendall(bytes(json.dumps(dec), 'utf-8'))

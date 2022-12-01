@@ -1,2 +1,2 @@
-from entrypoint.fastapi_app import app
+from entrypoint.setup import app
 

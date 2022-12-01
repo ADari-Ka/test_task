@@ -7,5 +7,8 @@ EXPOSE 8000
 
 ENV PYTHONPATH=/app:/app/entrypoint:$PYTHONPATH
 
+ENV MANIPULATOR_HOST='manipulator'
+ENV MANIPULATOR_PORT=5000
+
 
 ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
