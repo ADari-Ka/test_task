@@ -19,4 +19,7 @@ with conn:
 
         data: dict = ast.literal_eval(raw_data.decode('utf-8'))
 
+        if data["status"] not in ("up", "down"):
+            raise ValueError("Status must be 'up' or 'down'")
+
         logger.info(f"status: {data['status']}", time=data['datetime'])
