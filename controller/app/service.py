@@ -8,7 +8,7 @@ time = datetime.now()
 
 
 async def decision(dt: datetime, data=current_data, m_socket=manipulator_socket):
-    status = True if sum(data) // (len(data) + 1) < 6100 else False
+    status = True if sum(data) // (len(data) + 1) < 6200 else False
     dec = {'datetime': dt.strftime('%Y%m%dT%H%M%S'), 'status': 'up' if status else 'down'}
 
     logger.info(f"Status: {dec['status']}, datetime: {dec['datetime']}")
@@ -29,9 +29,8 @@ async def timer_handler(data, c_time=time):
     while True:
         await sleep(5)
 
-        await decision(datetime.now())
-
         c_time = datetime.now()
+        create_task(decision(c_time, data))
 
 
 create_task(timer_handler(current_data))

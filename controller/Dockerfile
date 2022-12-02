@@ -11,4 +11,4 @@ ENV MANIPULATOR_HOST='manipulator'
 ENV MANIPULATOR_PORT=5000
 
 
-ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "error"]

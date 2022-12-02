@@ -8,9 +8,6 @@ from model.sensor import AbstractSensor
 
 async def data_generation_task(sensor: AbstractSensor):
     while True:
-
-        logger.info(f'Generating data for {sensor}')
-
         post(
             settings.CONTROLLER_URL,
             json={
