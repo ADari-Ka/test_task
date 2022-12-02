@@ -15,8 +15,8 @@ with conn:
         raw_data = conn.recv(1024)
 
         if not raw_data:
-            break
+            logger.info('No data received')
 
         data: dict = ast.literal_eval(raw_data.decode('utf-8'))
 
-        logger.info(f"Status: {data['status']}, datetime: {data['datetime']}")
+        logger.info(f"status: {data['status']}", time=data['datetime'])

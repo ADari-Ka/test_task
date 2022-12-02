@@ -5,7 +5,7 @@ RUN pip install -r requirements.txt
 COPY ./ ./
 EXPOSE 8000
 
-ENV PYTHONPATH=/app:/app/entrypoint:$PYTHONPATH
+ENV PYTHONPATH=/app:/app/entrypoint:/app/model:$PYTHONPATH
 
 ENV MANIPULATOR_HOST='manipulator'
 ENV MANIPULATOR_PORT=5000

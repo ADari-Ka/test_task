@@ -1,27 +1,12 @@
 import sys
-import os
 
-import loguru
-import pydantic
+from pydantic import BaseSettings
+from loguru import logger
 
-# Logging
-logger = loguru.logger
-logger.configure(
-    **{
-        "handlers": [
-            {
-                "sink": sys.stdout,
-                "serialize": False,
-                "colorize": True,
-                "format": "{file}:{line} [<level>{level}</level>] {time:%Y%m%dT%H%M%S} {message}",
-                "level": os.getenv("LOGGING_LEVEL", "INFO").upper(),
-            },
-        ]
-    }
-)
+logger.add(sys.stderr, format="{time} {level} {message}", filter="my_module", level="INFO")
 
 
-class Settings(pydantic.BaseSettings):
+class Settings(BaseSettings):
     CONTROLLER_URL: str
 
     class Config:

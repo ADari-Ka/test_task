@@ -5,6 +5,12 @@ from typing import Dict, Any
 from random import randint, choice
 from datetime import datetime
 
+CONDITIONS = ['clear', 'partly-cloudy', 'cloudy', 'overcast', 'drizzle', 'light-rain', 'rain', 'moderate-rain',
+              'heavy-rain', 'continuous-heavy-rain', 'showers', 'wet-snow', 'light-snow', 'snow', 'snow-showers',
+              'hail', 'thunderstorm', 'thunderstorm-with-rain', 'thunderstorm-with-hail']
+
+SEASON = ['winter', 'spring', 'summer', 'autumn']
+
 
 class AbstractSensor(abc.ABC):
     def __init__(self, getter: callable):
@@ -63,12 +69,7 @@ class ConditionSensor(AbstractSensor):
         super().__init__(getter)
 
     async def get_payload(self) -> int:
-        conditions = ['clear', 'partly-cloudy', 'cloudy', 'overcast', 'drizzle', 'light-rain', 'rain', 'moderate-rain',
-                      'heavy-rain', 'continuous-heavy-rain', 'showers', 'wet-snow', 'light-snow', 'snow',
-                      'snow-showers',
-                      'hail', 'thunderstorm', 'thunderstorm-with-rain', 'thunderstorm-with-hail']
-
-        return conditions.index(self.data_getter()['condition'])
+        return CONDITIONS.index(self.data_getter()['condition'])
 
 
 class PopulationSensor(AbstractSensor):
@@ -93,11 +94,8 @@ def weather_getter() -> Dict[str, Any]:
     data = {
         'temp': randint(-50, 50),
         'humidity': randint(0, 100),
-        'condition': choice(
-            ['clear', 'partly-cloudy', 'cloudy', 'overcast', 'drizzle', 'light-rain', 'rain', 'moderate-rain',
-             'heavy-rain', 'continuous-heavy-rain', 'showers', 'wet-snow', 'light-snow', 'snow', 'snow-showers',
-             'hail', 'thunderstorm', 'thunderstorm-with-rain', 'thunderstorm-with-hail']),
-        'season': choice(['winter', 'spring', 'summer', 'autumn'])
+        'condition': choice(CONDITIONS),
+        'season': choice(SEASON)
     }
 
     return data

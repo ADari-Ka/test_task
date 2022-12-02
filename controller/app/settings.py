@@ -1,11 +1,8 @@
-import sys
-import os
 import socket
+import sys
 
 from pydantic import BaseSettings
 from loguru import logger
-
-current_data = []
 
 logger.configure(
     **{
@@ -13,13 +10,13 @@ logger.configure(
             {
                 "sink": sys.stdout,
                 "serialize": False,
-                "colorize": True,
                 "format": "{message}",
-                "level": os.getenv("LOGGING_LEVEL", "INFO").upper(),
             },
         ]
     }
 )
+
+current_data = []
 
 
 class Settings(BaseSettings):
@@ -30,6 +27,7 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
+# setup and connect socket to manipulator
 manipulator_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 manipulator_socket.connect((settings.MANIPULATOR_HOST, settings.MANIPULATOR_PORT))
 
